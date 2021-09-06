@@ -4,6 +4,7 @@
 AC_PREREQ([2.69])
 
 m4_include([m4/check_project_info.m4])
+m4_include([m4/get_cross_gcc_info.m4])
 
 AC_INIT([PROJECT_NAME], [VERSION_NUM], [EMAIL_INFO], [PROJECT_NAME], [PROJECT_URL])
 AC_CONFIG_SRCDIR([config.h.in])
@@ -20,12 +21,14 @@ LT_INIT
 PKG_PROG_PKG_CONFIG([0.24])
 
 # check m4 macro
+GCC_PREFIX_INFO
 CHECK_PROJECT_INFO
 CHECK_VERSION_INFO
 CHECK_DOXYGEN
 # CHECK_JAVA
 CHECK_LIBHY_HAL
 CHECK_LIBHY_UTILS
+SELECT_MCU
 
 # Checks for programs.
 AC_PROG_CXX
@@ -49,5 +52,7 @@ AC_PROG_MKDIR_P
 AC_CONFIG_FILES([Makefile
                  doc/Makefile
                  example/Makefile
-                 res/Makefile])
+                 res/Makefile
+                 res/at/Makefile
+                 res/at/at32f4xx/Makefile])
 AC_OUTPUT

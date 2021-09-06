@@ -31,6 +31,7 @@ elif [ x$1 = x"mcu" ]; then
     #
     # _cppflags_com=""
     # _cflags_com="-mcpu=cortex-m0 -mthumb"
+    # _param_com=""
 
     # -----------
     # 雅特力
@@ -39,6 +40,7 @@ elif [ x$1 = x"mcu" ]; then
     # M4系列
     #
     _cflags_com="-mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard"
+    _param_com="--with-mcu=at32f4xx"
 
     _ldflag_com="-specs=nano.specs -specs=nosys.specs"
 else
@@ -52,7 +54,7 @@ lib_3rd_path=${data_disk_path}/install/${vender}/${gcc_version}
 target_path=`pwd`
 prefix_path=${lib_3rd_path}
 
-cd ${target_path} && ./autogen.sh && cd -
+cd ${target_path} && ./autogen.sh ${cross_gcc_path} && cd - >/dev/null 2>&1
 
 if [ $# = 2 ]; then
     mkdir -p $2/${vender}
